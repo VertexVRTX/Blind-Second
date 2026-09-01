@@ -1,4 +1,4 @@
-# Blind Timing — 1v1 Blind Reflex Duel
+# Blind Second — 1v1 Blind Reflex Duel
 
 A 1v1 online party game where two players duel on timing and reflexes without a visible clock. Built to solve a specific problem: **how to measure reaction time fairly when both players have different ping**.
 
@@ -122,7 +122,7 @@ Every phase that waits on client input (`WaitingForInput`, `SettingStart/End`) h
 </table>
 
 You can download and run:
-**[Download on itch.io](---)**
+**[Download on itch.io](https://vertexvrtx.itch.io/blind-secondcoop)**
 
 **or**
   
