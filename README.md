@@ -1,6 +1,8 @@
 # Blind Second — 1v1 Blind Reflex Duel
 
-A 1v1 online party game where two players duel on timing and reflexes without a visible clock. Built to solve a specific problem: **how to measure reaction time fairly when both players have different ping**.
+A 3D networked party/reaction game where two players duel on timing and reflexes without a visible clock. Three modes: head-to-head precision, setter-vs-guesser intervals, and blind cooperative timing.
+
+Built from scratch to solve a specific networking problem: **how to measure reaction time fairly when both players have different ping**.
 
 <img width="800" height="450" alt="ezgif com-optimize" src="https://github.com/user-attachments/assets/0f3319df-7a50-4785-8077-0797cf7c76b6" />
 
@@ -15,15 +17,15 @@ In a 1v1 timing game, if the server records *when it receives the press RPC*, th
 - **One clock for display and measurement**: `CountdownUI` uses the same `LocalTime` clock that measures the press, so what the player sees matches what gets scored.
 - **Hang-protection**: every server-wait state has a timeout. An AFK or disconnected opponent can never softlock the match.
 
-&gt; An earlier version subtracted `RTT/2` on top of Netcode's already-corrected `LocalTime`, double-penalizing high-ping players. Removing that fixed the core fairness problem.
+> **A critical bug I fixed:** an earlier version subtracted `RTT/2` on top of Netcode's already-corrected `LocalTime`, double-penalizing high-ping players. Removing that fixed the core fairness problem.
 
 <img width="1919" height="1079" alt="Screenshot_21" src="https://github.com/user-attachments/assets/c1ee888d-a200-41af-88ee-ad301e819ee7" />
 
 
 ## Quick Facts
 
-| | |
-|---|---|
+| Category | Details |
+|----------|---------|
 | **Networking** | Netcode for GameObjects, Unity Relay (P2P via join code), server-authoritative state machine |
 | **Anti-cheat** | Private server fields, sender validation on every RPC, no client-side round secrets |
 | **Input** | 3D ray-cast buttons (not UI `OnClick`), DOTween press animations |
@@ -32,6 +34,17 @@ In a 1v1 timing game, if the server records *when it receives the press RPC*, th
 | **Latency tested** | 20–200ms simulated |
 
 <img width="1919" height="1079" alt="Screenshot_22" src="https://github.com/user-attachments/assets/a609ee0a-ca84-4370-93a7-8145cfbf0e24" />
+
+## Modes
+
+### Precision
+Server picks a hidden target time. Two beeps mark the interval. Press closest to the target — win the point.
+
+### Interval Guess
+Setter creates an interval by pressing twice. Guesser reproduces it from a standing start. Roles swap every round.
+
+### Cooperative
+Both players chase the same hidden target together. Success is scored on the **sum** of both presses landing within tolerance.
 
 ## Round State Machine
 ```mermaid
