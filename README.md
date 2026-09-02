@@ -1,4 +1,4 @@
-# Blind Second — 1v1 Blind Reflex Duel
+# Blind Second — 1v1 Blind Reflex Duel (Unity)
 
 A 3D networked party/reaction game where two players duel on timing and reflexes without a visible clock. Three modes: head-to-head precision, setter-vs-guesser intervals, and blind cooperative timing.
 
